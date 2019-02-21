@@ -4,6 +4,35 @@
 超过数组长度的一半，因此输出2。如果不存在则输出0。
 */
 
+/*方法 不用排序 直接用下面的方法即可*/
+class Solution {
+public:
+    int MoreThanHalfNum_Solution(vector<int> numbers) {
+        int sz = numbers.size();
+        if( sz == 0 ) return 0;
+        int num = numbers[0], count = 1;
+        for(int i = 1; i < sz; i++) {
+            if( !count ) {
+                num = numbers[i];
+                count = 1;
+                continue;
+            }
+            if( num == numbers[i] ) {
+                count++;
+            }else {
+                count--;
+            }
+        }
+        if( !count ) return 0;
+        count = 0;
+        for(int i = 0; i < numbers.size(); i++) {
+            if( num == numbers[i] ) count++;
+        }
+        if( count > ( sz /2 ) ) return num;
+        return 0;
+    }
+};
+ 
 class Solution {
 public:
     bool compare(int a, int b) {
